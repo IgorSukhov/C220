@@ -12,6 +12,7 @@
 #include <cctype>
 #include <list>
 #include <deque>
+#include <algorithm>
 
 using namespace std;
 
@@ -69,6 +70,30 @@ void Separate(T1& t1, T2& t2, T3& t3, F pred)
             t3.push_back(el);
         }
     }
+}
+
+template <typename T>
+struct EnumType
+{
+    static map<string, T> colors;
+    static const auto& getMap()  { return colors; }
+};
+
+template <typename T>
+T stringToEnum(string str)
+{
+    map<string, T> c = EnumType<T>::getMap();
+    return c[str];
+}
+
+template <typename T>
+string EnumToString(T en)
+{
+    map<string, T> colorMap = EnumType<T>::getMap();
+    for (auto& p : colorMap) {
+        if(p.second == en) return p.first;
+    }
+    return "error";
 }
 
 #endif // MAIN_H

@@ -1,6 +1,3 @@
-
-
-
 #include "main.h"
 
 using namespace std;
@@ -164,8 +161,25 @@ void Task9()
     cout << cnt;
 }
 
+template<typename T>
+map<string, T> EnumType<T>::colors = { {"red", 1}, {"green", 2}, {"blue", 4} };
+
 void Task10()
 {
+    cout << stringToEnum<int>("red") << endl
+         << stringToEnum<int>("green") << endl
+         <<stringToEnum<int>("blue") << endl;
+
+    cout << endl;
+
+    cout << EnumToString<int>(1) << endl
+         << EnumToString<int>(2) << endl
+         << EnumToString<int>(4) << endl;
+
+    cout << endl;
+
+    cout << stringToEnum<int>("orange") << endl;
+    cout << EnumToString<int>(6) << endl;
 
 }
 
@@ -173,7 +187,7 @@ int main()
 {
 
 
-    Task1();
+    //    Task1();
     //    Task2();
     //Task3();
     //Task4();
@@ -182,7 +196,7 @@ int main()
     //Task7();
     //    Task8();
     //Task9();
-//    Task10();
+    Task10();
 
     return 0;
 }
