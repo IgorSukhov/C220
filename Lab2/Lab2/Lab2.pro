@@ -1,6 +1,6 @@
 QT -= gui
 
-CONFIG += c++11 console
+CONFIG += c++17 console
 CONFIG -= app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -9,7 +9,9 @@ CONFIG -= app_bundle
 
 SOURCES += \
         container.cpp \
-        main.cpp
+        main.cpp \
+        myqueue.cpp \
+        mystring.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -17,4 +19,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    container.h
+    container.h \
+    myqueue.h \
+    mystring.h
