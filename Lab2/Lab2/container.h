@@ -29,21 +29,20 @@ public:
 template<typename T>
 Container<T>::Container()
 {
-//    data.push_back(3);
-//    data.push_back(23);
-//    data.push_back(12);
+
 }
 
 template<typename T>
 Container<T>::Container(initializer_list<T> list)
 {
-    //data.insert(data.begin(),list.begin(),list.end());
     Append(list);
 }
 
 template<typename T>
 void Container<T>::Append(initializer_list<T> list)
 {
+    int d = distance(list.begin(),list.end());
+    data.reserve(data.size()+d);
     for (const auto& p : list) {
         add(p);
     }
