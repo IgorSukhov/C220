@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,40 +12,54 @@ class Container
 {
     vector<T> data;
 public:
-    Container()
-    {
-        data.push_back(3);
-        data.push_back(23);
-        data.push_back(12);
-    }
-    Container(initializer_list<T> list)
-    {
-        data.insert(data.begin(),list.begin(),list.end());
-    }
-    void Append(initializer_list<T> list)
-    {
-        for (auto& p : list) {
-            add(p);
-        }
-    }
-    void PrintData()
-    {
-        for (auto& d : data) {
-            cout << d << " ";
-        }
-        cout << "\n";
-    }
-    void add(T t)
-    {
-        if(find(data.begin(),data.end(), t) != data.end())
-        {
-            data.push_back(t);
-        }
-    }
-    bool compare(T t1, T t2)
-    {
-        return t1 == t2;
-    }
+    Container();
+    Container(initializer_list<T> list);
+    void Append(initializer_list<T> list);
+    void PrintData();
+    void add(const T& t);
 };
+
+
+template<typename T>
+Container<T>::Container()
+{
+//    data.push_back(3);
+//    data.push_back(23);
+//    data.push_back(12);
+}
+
+template<typename T>
+Container<T>::Container(initializer_list<T> list)
+{
+    //data.insert(data.begin(),list.begin(),list.end());
+    Append(list);
+}
+
+template<typename T>
+void Container<T>::Append(initializer_list<T> list)
+{
+    for (const auto& p : list) {
+        add(p);
+    }
+}
+
+template<typename T>
+void Container<T>::PrintData()
+{
+    for (auto& d : data) {
+        cout << d << " ";
+    }
+    cout << "\n";
+}
+
+template<typename T>
+void Container<T>::add(const T &t)
+{
+    if(find(begin(data), end(data), t) == end(data))
+    {
+//        cout << t << " ";
+        data.push_back(t);
+    }
+}
 
 #endif // CONTAINER_H
