@@ -65,7 +65,7 @@ void Task3()
 }
 
 template<typename T>
-void PrintAnyCont(T& t)
+void PrintAnyCont(const T& t)
 {
     for(auto& v : t)
     {
@@ -145,10 +145,11 @@ void Task7()
 
 void Task8()
 {
+    std::set<int> s;
     std::vector<int> v{ 1,2,3,4,5 };
     std::list<int> l; //сюда четные
     std::deque<int> d; //а сюда нечетные
-    Separate(v, l, d, [](auto v) -> bool {return v%2;});
+    Separate(v, l, s, [](auto v) -> bool {return v%2;});
     PrintAnyCont(l);
     PrintAnyCont(d);
 }
@@ -161,25 +162,29 @@ void Task9()
     cout << cnt;
 }
 
-template<typename T>
-map<string, T> EnumType<T>::colors = { {"red", 1}, {"green", 2}, {"blue", 4} };
+enum class COLORS { RED, GREEN, BLUE};
+
+
+map<string, COLORS> EnumType<COLORS>::colors =
+{ {"red", COLORS::RED}, {"green", COLORS::GREEN}, {"blue", COLORS::BLUE} };
+
 
 void Task10()
 {
-    cout << stringToEnum<int>("red") << endl
-         << stringToEnum<int>("green") << endl
-         <<stringToEnum<int>("blue") << endl;
+    cout << stringToEnum<COLORS>(std::string("red")) << endl
+         << stringToEnum<COLORS>("green") << endl
+         << stringToEnum<COLORS>("blue") << endl;
 
     cout << endl;
 
-    cout << EnumToString<int>(1) << endl
-         << EnumToString<int>(2) << endl
-         << EnumToString<int>(4) << endl;
+    cout << EnumToString(COLORS::RED) << endl
+         << EnumToString(COLORS::GREEN) << endl
+         << EnumToString(COLORS::BLUE) << endl;
 
     cout << endl;
 
-    cout << stringToEnum<int>("orange") << endl;
-    cout << EnumToString<int>(6) << endl;
+  //  cout << stringToEnum<int>("orange") << endl;
+  //  cout << EnumToString<int>(6) << endl;
 
 }
 
@@ -194,9 +199,9 @@ int main()
     //    Task5();
     //Task6();
     //Task7();
-    //    Task8();
+        Task8();
     //Task9();
-    Task10();
+//    Task10();
 
     return 0;
 }

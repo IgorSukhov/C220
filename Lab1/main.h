@@ -63,11 +63,11 @@ void Separate(T1& t1, T2& t2, T3& t3, F pred)
     for(auto& el : t1) {
         if(pred(el))
         {
-            t2.push_back(el);
+            t2.insert(end(t2), el);
         }
         else
         {
-            t3.push_back(el);
+            t3.insert(end(t3), el);
         }
     }
 }
@@ -80,20 +80,20 @@ struct EnumType
 };
 
 template <typename T>
-T stringToEnum(string str)
+T stringToEnum(string &str)
 {
-    map<string, T> c = EnumType<T>::getMap();
-    return c[str];
+    const map<string, T>& c = EnumType<T>::getMap();
+    return c.at(str);
 }
 
 template <typename T>
 string EnumToString(T en)
 {
-    map<string, T> colorMap = EnumType<T>::getMap();
+    const map<string, T>& colorMap = EnumType<T>::getMap();
     for (auto& p : colorMap) {
         if(p.second == en) return p.first;
     }
-    return "error";
+    throw "error";
 }
 
 #endif // MAIN_H
