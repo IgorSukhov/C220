@@ -12,8 +12,8 @@ class MyString
 {
 private:
     //queue<T> q;
-    string data;
 public:
+    string data;
     explicit MyString();
 //    MyString(char *str);
 
