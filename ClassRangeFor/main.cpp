@@ -9,10 +9,12 @@ int main(int argc, char *argv[])
     iter.add(std::string("Hi"));
     iter.add(std::string("from"));
     iter.add(std::string("iter"));
-    for (auto& v : iter) {
-        std::cout << v << std::endl;
-    }
+    iter.add({std::string("Hi"),std::string("Hi")});
+    iter.print();
 
-
+    Iter<int> it;
+    it.add(15);
+    it.add(23);
+    it.print();
     return a.exec();
 }
