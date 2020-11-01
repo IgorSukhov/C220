@@ -10,6 +10,11 @@ class Iter
     T *arr;
     size_t dataSize = 1;
     size_t dataPos = 0;
+
+    size_t m_cap = 0;
+    size_t m_n = 0;
+    size_t m_first = 0;
+    size_t m_last = 0;
 public:
     explicit Iter();
     Iter(std::initializer_list<T> list);
